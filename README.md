@@ -1,3 +1,3 @@
-#UNDER CONSTRUCTION#
+# UNDER CONSTRUCTION
 # Remogy 
-##Student-Teacher Interactivity
+## Student-Teacher Interactivity
