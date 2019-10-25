@@ -19,7 +19,14 @@ export default class BroadcastModal extends React.Component {
 
   componentWillUnmount(){
     this.props.hideChart();
-    this.socket.emit('resetAnswerData');
+    // this.socket.emit('resetAnswerData'); change to match updated back-end
+    fetch('reset-chart-data', {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'POST'
+    })
   }
 
   renderAnswerData(){
@@ -38,7 +45,7 @@ export default class BroadcastModal extends React.Component {
     if (this.props.question) {
       this.props.deleteAdminQuestion(this.props.question.value);
       this.props.resetSelect();
-    } 
+    }
   }
 
   handleChildClick(event){
@@ -49,7 +56,7 @@ export default class BroadcastModal extends React.Component {
     this.handleDeleteSavedQuestion();
     this.props.toggle(event);
   }
-  
+
   deleteButton(event){
     this.props.toggle(event);
     this.handleDeleteButton();

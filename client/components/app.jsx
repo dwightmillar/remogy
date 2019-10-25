@@ -29,12 +29,12 @@ class App extends React.Component {
     this.handleSelectUser = this.handleSelectUser.bind(this);
     this.switchTheme = this.switchTheme.bind(this);
     this.socketToDeleteQQ = this.socketToDeleteQQ.bind(this);
-  };
+  }
 
   componentDidUpdate() {
     console.log('app state: ', this.state);
     this.deleteAdminQuestion = this.deleteAdminQuestion.bind(this);
-  };
+  }
 
   deleteAdminQuestion(adminQuestionID) {
     const broadcastquestions = this.state.broadcastquestions;
@@ -65,7 +65,7 @@ class App extends React.Component {
     handleSelectUser(event) {
         this.setState({userType: event.target.value})
     }
-  
+
     getUserLoginData(channelName, userType, userName){
 
       console.log('channelName: ',channelName,'userType: ',userType,'userName: ',userName);
@@ -85,7 +85,7 @@ class App extends React.Component {
         })
         .catch(error=>{console.error(error)});
     }
-    
+
     getStudentQuestions() {
 
         fetch('http://localhost:3001/getStudentsQuestions', {
@@ -106,12 +106,12 @@ class App extends React.Component {
       .then(successObj => {
           this.setState({
               broadcastquestions: successObj.data.map(element =>
-                  element = { 
+                  element = {
                       'value': element.id,
                       'label': element.question,
                       'admin_id': element.admin_id,
                       'answer_ids': element.answer_ids,
-                      'answers': element.answers 
+                      'answers': element.answers
                   }
               )
           })
@@ -163,7 +163,7 @@ class App extends React.Component {
 
   socketToDeleteQQ(questionID){
     console.log(' app socketToDeleteQQ reached, questionID', questionID);
-    this.socket.emit('QQdelete', questionID);
+    // this.socket.emit('QQdelete', questionID); student-question.delete
   }
 
   componentDidMount(){
@@ -202,16 +202,16 @@ class App extends React.Component {
             deleteAdminQuestion={this.deleteAdminQuestion}
             theme={this.state.theme}
           />
-          <SidePanel 
+          <SidePanel
             userType={this.state.userType}
             adminData={[this.state.adminID, this.state.channelName]}
             add={this.addQuestion}
             delete={this.socketToDeleteQQ}
-            questionQueue={this.state.questionQueue} 
+            questionQueue={this.state.questionQueue}
             theme={this.state.theme}
             username={this.state.userName}
           />
-            
+
         </div>
       </div>
     )
