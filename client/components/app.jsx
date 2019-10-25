@@ -164,6 +164,13 @@ class App extends React.Component {
   socketToDeleteQQ(questionID){
     console.log(' app socketToDeleteQQ reached, questionID', questionID);
     // this.socket.emit('QQdelete', questionID); student-question.delete
+    fetch('/student-question?studentQuestionID=' + questionID, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'DELETE'
+    })
   }
 
   componentDidMount(){
