@@ -92,14 +92,14 @@ server.post('/addAdminQuestion', (req,res)=>{
           break;
         case 3: ans3 = ans3.search(regex).replace("/'");
           break;
-      }  
+      }
     }
-    
+
     // this^ is meant to accommodate for apostrophes in the question text, but
-    // problematic code, gives type error even though im checking that question variable is 
-    // a string before calling .search().replace() like i did on the answer strings 
+    // problematic code, gives type error even though im checking that question variable is
+    // a string before calling .search().replace() like i did on the answer strings
     // question = question.toString().search(regex).replace("/'");
-    
+
 
     let questionID;
     let firstAnswerID;
@@ -217,7 +217,7 @@ io.on('connection', (socket)=>{
       case 'D': answerData.datasets[0].data[3] += 1;
         break;
       default: console.error('Question answer data not sent/stored properly.');
-    };
+    }
     console.log('questionData after increment: ');
     console.log(answerData);
 
@@ -247,6 +247,6 @@ io.on('connection', (socket) => {
   })
 });
 
-http.listen(3001, () => {
-  console.log('Node server listening on port 3001 successfully.')
+http.listen(3002, () => {
+  console.log('Node server listening on port 3002 successfully.')
 });
